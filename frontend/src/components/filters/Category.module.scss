@@ -1,0 +1,29 @@
+#category {
+  background-color: #232f3e;
+}
+
+.category {
+  height: 5.5rem;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+
+  list-style: none;
+  overflow-x: auto;
+
+  & li button {
+    font-size: 1.6rem;
+    font-family: 'Open Sans', sans-serif;
+    color: #ddd;
+
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    transition: all 0.3s ease-in;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}

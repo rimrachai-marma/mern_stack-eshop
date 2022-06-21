@@ -1,0 +1,145 @@
+.form-group {
+  background-color: #f9f9f9;
+  padding: 2rem;
+
+  &:not(:last-child) {
+    border-bottom: 1.5px solid #00000020;
+  }
+
+  & label {
+    color: #555;
+    text-transform: capitalize;
+  }
+
+  & span {
+    color: #777;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  & form {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    & input,
+    & select {
+      flex-grow: 1;
+      width: 100%;
+      height: 3.5rem;
+      font-size: 1.5rem;
+      color: #333;
+      letter-spacing: 0.08rem;
+      padding: 0 2rem;
+      background-color: #eee;
+      border: none;
+      border-radius: 2px;
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 1rem 2rem rgba(#000, 0.1);
+        background-color: #e0d4fd;
+      }
+    }
+
+    & input[type='file'] {
+      color: #777;
+      padding: 0.5rem 1rem;
+
+      height: 100%;
+      display: flex;
+      align-items: center;
+
+      &::file-selector-button,
+      &::-webkit-file-upload-button {
+        float: right;
+        cursor: pointer;
+        border: 2px solid #6c5ce7;
+        padding: 0.5rem 0.7rem;
+        border-radius: 0.2em;
+        background-color: #a29bfe;
+        text-transform: uppercase;
+        color: #eee;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.1rem;
+
+        transition: all 0.2s ease-in;
+
+        &:hover {
+          background-color: #6c5ce7;
+        }
+      }
+    }
+
+    & button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 100%;
+      height: 3.5rem;
+      padding: 0 2rem;
+      border: 1px solid #999;
+      color: #777;
+      font-size: 1.5rem;
+
+      font-family: 'Open Sans', sans-serif;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.4s;
+
+      &:hover {
+        background-color: #999;
+        color: #eee;
+      }
+
+      &:disabled,
+      &:disabled:hover,
+      &:disabled:active {
+        background-color: #ccc;
+        color: #555;
+        border-color: #ccc;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  & .err-message {
+    color: #712b29;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  & button {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 3.5rem;
+    padding: 0 2rem;
+    border: 1px solid #999;
+    color: #777;
+    font-size: 1.5rem;
+
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s;
+
+    &:hover {
+      background-color: #999;
+      color: #eee;
+    }
+
+    &:disabled,
+    &:disabled:hover,
+    &:disabled:active {
+      background-color: #ccc;
+      color: #555;
+      border-color: #ccc;
+      cursor: not-allowed;
+    }
+  }
+}

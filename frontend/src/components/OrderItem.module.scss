@@ -1,0 +1,69 @@
+@import '../global/mixins.scss';
+
+.order-item {
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+  grid-gap: 1.5rem;
+
+  padding: 1.5rem 0;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  }
+
+  @include respond(phone) {
+    grid-template-columns: none;
+  }
+
+  &_img {
+    overflow: hidden;
+    border-radius: 2px;
+
+    & img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  &_details {
+    & a {
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      & .name {
+        font-family: 'Open Sans', sans-serif;
+        letter-spacing: 0.08rem;
+        font-size: 1.5rem;
+        font-weight: 100;
+        color: #555;
+      }
+    }
+
+    & .qty {
+      color: #555;
+      font-weight: 700;
+      & span {
+        font-size: 1.1rem;
+      }
+    }
+
+    & price {
+      font-size: 2.7rem;
+      font-family: 'Open Sans', sans-serif;
+      letter-spacing: 0.07rem;
+      color: #555;
+
+      & span {
+        font-size: 1.4rem;
+        letter-spacing: 0.05rem;
+      }
+    }
+  }
+}

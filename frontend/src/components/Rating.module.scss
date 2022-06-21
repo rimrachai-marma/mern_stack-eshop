@@ -1,0 +1,19 @@
+.rating {
+  display: flex;
+  align-items: center;
+  & span {
+    margin: 0.1rem;
+    font-size: 1.2rem;
+    color: #555;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 0.08rem;
+
+    display: flex;
+    align-items: center;
+  }
+}
+
+.star-icon {
+  width: 1.6rem;
+  height: auto;
+}

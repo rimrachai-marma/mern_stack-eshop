@@ -1,0 +1,126 @@
+.order-detaile {
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap-reverse;
+  align-items: flex-end;
+}
+
+.detailes {
+  flex-grow: 5;
+  flex-basis: 40rem;
+}
+
+.action {
+  flex-grow: 2;
+  flex-basis: 20rem;
+
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  padding: 2rem;
+}
+
+.order-detaile-group {
+  padding: 2rem 1rem 1rem 1rem;
+  &:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  }
+
+  & h1 {
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    color: #555;
+    font-weight: 100;
+    margin-bottom: 0.2rem;
+  }
+
+  & div {
+    color: #777;
+    font-size: 1.4rem;
+    font-family: 'Open Sans', sans-serif;
+
+    & span {
+      color: #555;
+      text-transform: capitalize;
+    }
+  }
+}
+
+.summary {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  margin-bottom: 1.2rem;
+
+  & h1 {
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    color: #555;
+    font-weight: 100;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    margin-bottom: 1.2rem;
+  }
+
+  & ul {
+    list-style: none;
+    padding: 0 2rem 0 2rem;
+
+    & li {
+      &:not(:last-child) {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      &:last-child {
+        color: #555;
+        font-weight: 700;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      padding: 0.5rem;
+      font-size: 1.4rem;
+      font-family: 'Open Sans', sans-serif;
+      color: #777;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      & label {
+        text-transform: capitalize;
+      }
+    }
+  }
+}
+
+.order-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 4.5rem;
+  cursor: pointer;
+  border: none;
+  background-color: #777;
+  color: #eee;
+  font-size: 2rem;
+  text-transform: uppercase;
+
+  transition: all 0.2s ease-in;
+
+  &:hover {
+    background-color: #000033;
+  }
+
+  &:disabled,
+  &:disabled:hover,
+  &:disabled:active {
+    background-color: #ccc;
+    color: #555;
+    border-color: #ccc;
+    cursor: not-allowed;
+  }
+}
+
+.back-btn {
+  font: inherit;
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

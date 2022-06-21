@@ -1,0 +1,115 @@
+@import '../global/mixins.scss';
+
+.profile {
+  display: grid;
+  grid-template-columns: 4fr 8fr;
+
+  gap: 2rem;
+
+  @include respond(tab-port) {
+    grid-template-columns: none;
+  }
+
+  &__details {
+    list-style: none;
+
+    & ul {
+      list-style: none;
+
+      & li {
+        padding: 1rem 2rem;
+        background-color: #f9f9f9;
+
+        line-height: normal;
+
+        & label {
+          color: #555;
+          text-transform: uppercase;
+        }
+
+        & p {
+          color: #777;
+          font-family: 'Open Sans', sans-serif;
+        }
+
+        &:not(:last-child) {
+          border-bottom: 1.5px solid #00000020;
+        }
+
+        &:first-child {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+
+      & button {
+        width: 100%;
+        font: inherit;
+        font-weight: 100;
+        padding: 0.7rem 2rem;
+        background-color: #999;
+        color: #eee;
+        border: none;
+        text-transform: uppercase;
+        cursor: pointer;
+        margin: 0.5rem auto;
+
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #777;
+        }
+        &:active {
+          transform: translateY(0.2rem);
+        }
+      }
+    }
+  }
+}
+
+.user {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.profile-img {
+  position: relative;
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.avater-icon {
+  fill: #999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.avater {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.name {
+  color: #999;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.07rem;
+  text-transform: capitalize;
+}
+
+////
+.order-list {
+  overflow-x: auto;
+}

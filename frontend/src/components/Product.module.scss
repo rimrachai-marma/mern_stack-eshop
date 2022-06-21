@@ -1,0 +1,116 @@
+.card {
+  background-color: #eee;
+  padding: 1.3rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  border-radius: 0.25rem;
+
+  &:hover .card-header img {
+    transform: scale(1.05);
+  }
+}
+
+.card-header {
+  overflow: hidden;
+
+  & img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    object-position: center;
+    transition: 0.3s transform ease-in-out;
+  }
+}
+
+.card-body {
+  margin: 1.2rem 0;
+  & a {
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.card-title {
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 0.08rem;
+  font-size: 1.5rem;
+  font-weight: 100;
+  margin-bottom: 0.7rem;
+  color: #333333;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+}
+.card-amount {
+  font-size: 2.2rem;
+}
+
+///
+.btn {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn {
+  width: 12rem;
+  height: 3.7rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background: #777;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+
+  &:hover {
+    background: #555;
+  }
+
+  &:disabled,
+  &:disabled:hover,
+  &:disabled:active {
+    background-color: #ccc;
+    color: #292929;
+    border-color: #ccc;
+    cursor: not-allowed;
+  }
+}
+
+.btn {
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.text {
+  text-transform: uppercase;
+  transform: translateX(1rem);
+  color: #eee;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.icon {
+  position: absolute;
+  border-left: 1.5px solid #eee;
+  transform: translateX(8.5rem);
+  height: 2.7rem;
+  width: 3.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-icon {
+  width: 1.6rem;
+  fill: #eee;
+}

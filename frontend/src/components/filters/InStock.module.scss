@@ -1,0 +1,23 @@
+.label {
+  color: #555;
+  text-transform: capitalize;
+  font-size: 1.4rem;
+}
+
+.checkbox {
+  cursor: pointer;
+  display: block;
+}
+
+.btn {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.7rem;
+  & button {
+    width: 100%;
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-family: inherit;
+  }
+}

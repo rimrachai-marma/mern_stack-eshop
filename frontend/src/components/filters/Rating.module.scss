@@ -1,0 +1,34 @@
+.label {
+  color: #555;
+  text-transform: capitalize;
+  font-size: 1.4rem;
+}
+
+.select {
+  width: 100%;
+  height: 2.5rem;
+  font-size: 1.3rem;
+  color: #333;
+  letter-spacing: 0.08rem;
+  padding: 0 0.8rem;
+  background-color: #eee;
+  border: none;
+
+  &:focus {
+    outline: none;
+    background-color: #e0d4fd;
+  }
+}
+
+.btn {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.7rem;
+  & button {
+    width: 100%;
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-family: inherit;
+  }
+}

@@ -1,0 +1,45 @@
+//Media Query Manager//
+/*---
+320px — 480px: Mobile devices;
+481px — 768px: iPads, Tablets;
+769px — 1024px: Tablet landscape, Small-laptops;
+1025px — 1800px: Desktops, large screens laptops (where is normal style apply)
+1801px and more —  Extra large screens, TV (1800+)
+
+$breakpoint argument choices:
+- phone,
+- tab-port,
+- tab-land,
+- big-screen
+
+define 1em = 16px;
+---*/
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 30em) {
+      @content; // <= 480px: Mobile devices;
+    }
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 48em) {
+      @content; // <= 768px: iPads, Tablets;
+    }
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 64em) {
+      @content; // <= 1024px: Tablet landscape, Small-laptops;
+    }
+  }
+  @if $breakpoint == big-screen {
+    @media only screen and (min-width: 112.5em) {
+      @content; // > 1800: Extra large screens, TV (1800+)
+    }
+  }
+}
+
+@mixin abscenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

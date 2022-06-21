@@ -1,0 +1,34 @@
+.label {
+  color: #555;
+  text-transform: capitalize;
+  font-size: 1.4rem;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  & input {
+    border: 0.5px solid rgb(231, 11, 11);
+    cursor: pointer;
+  }
+
+  & label {
+    font-size: 1.3rem;
+    color: #777;
+  }
+}
+
+.btn {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.7rem;
+  & button {
+    width: 100%;
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-family: inherit;
+  }
+}

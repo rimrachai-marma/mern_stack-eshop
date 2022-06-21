@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap');
+@import './global/mixins.scss';
+@import url(../src/assets/icons/icon-font.css);
+
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 65.5%; /* this define what 1rem is; 1rem = 10px; 10px/16px = 65.5% */
+
+  @include respond(tab-land) {
+    font-size: 56.25%; // 1rem = 9px; 9px/16px = 56.25%
+  }
+  @include respond(tab-port) {
+    font-size: 50%; // 1rem = 8px; 8px/16px = 50%
+  }
+  @include respond(big-screen) {
+    font-size: 75%; // 1rem = 12px; 12px/16px = 75%
+  }
+}
+
+body {
+  font-family: 'Roboto', 'Lato', 'Open Sans', sans-serif;
+  box-sizing: border-box;
+  font-weight: 400;
+  line-height: 1.7;
+  font-size: 1.6rem;
+  color: #333333;
+}

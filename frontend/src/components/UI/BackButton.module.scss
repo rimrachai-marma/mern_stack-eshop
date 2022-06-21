@@ -1,0 +1,16 @@
+//Button Inline
+.btn {
+  border: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  border-bottom: 1px solid #333;
+  display: inline-block;
+  background-color: transparent;
+  color: #333;
+  transition: all 0.3s;
+
+  &:hover {
+    border-bottom: 1px solid #f79240;
+  }
+}

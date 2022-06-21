@@ -1,0 +1,105 @@
+.table-wraper {
+  overflow-x: auto;
+
+  & h1 {
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    color: #555;
+    font-weight: 100;
+    margin-bottom: 1.5rem;
+    float: left;
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Open Sans', sans-serif;
+
+  overflow-x: auto;
+
+  & thead {
+    & tr {
+      background: #999;
+      color: #fff;
+      text-align: left;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+  }
+
+  & tbody {
+    color: #444;
+    & tr {
+      &:nth-of-type(odd) {
+        background: #d8d8d8;
+      }
+      &:nth-of-type(even) {
+        background: #e6e6e6;
+      }
+    }
+  }
+
+  & thead tr th,
+  & tbody tr td {
+    padding: 0.7rem 1.4rem;
+
+    &:not(:first-child) {
+      border-left: 1px solid #eee;
+    }
+  }
+}
+
+.icon-edit,
+.icon-delete {
+  width: 2rem;
+  height: 2rem;
+}
+
+.icon-delete {
+  fill: #ff0000;
+}
+.icon-edit {
+  fill: #777;
+}
+
+.action-btn {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  & a {
+    text-decoration: none;
+  }
+
+  & button {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+  }
+}
+
+.create-btn {
+  float: right;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  background-color: #777;
+  color: #fff;
+  text-transform: uppercase;
+  font: inherit;
+  cursor: pointer;
+  margin-bottom: 1rem;
+
+  transition: all 0.2s ease-in;
+
+  &:hover {
+    background-color: #000033;
+  }
+
+  &:disabled,
+  &:disabled:hover,
+  &:disabled:active {
+    background-color: #ccc;
+    color: #555;
+    border-color: #ccc;
+    cursor: not-allowed;
+  }
+}
