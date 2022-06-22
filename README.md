@@ -1,11 +1,11 @@
 # MERN stack eCommerce website.
-A fullstack eCommerce website using MERN stack and Redux(with Redux Toolkit) and many more.
-[Live](https://eshop-app-mern-stack.herokuapp.com/)
+A fullstack eCommerce website using MERN stack and Redux (with Redux Toolkit) and many more.
+[Live View](https://eshop-app-mern-stack.herokuapp.com/)
 
 
 ## Technology
 
-> Thechnologies that use in this project
+> Thechnologies that used in this project
 #### Frontend
 - React JS
 - React Router v6
