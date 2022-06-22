@@ -2,6 +2,10 @@
 A fullstack eCommerce website using MERN stack and Redux (with Redux Toolkit) and many more.
 [Live View](https://eshop-app-mern-stack.herokuapp.com/)
 
+![screenshot 1](https://github.com/rimrachai-marma/mern_stack-eshop/blob/main/uploads/image-1655908448291.PNG)
+![screenshot 2](https://github.com/rimrachai-marma/mern_stack-eshop/blob/main/uploads/image-1655908460139.PNG)
+![screenshot 3](https://github.com/rimrachai-marma/mern_stack-eshop/blob/main/uploads/image-1655908469615.PNG)
+
 
 ## Technology
 
