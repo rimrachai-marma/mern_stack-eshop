@@ -1,4 +1,5 @@
 # MERN stack eCommerce website.
+
 A fullstack eCommerce website using MERN stack and Redux (with Redux Toolkit) and many more.
 [Live View](https://eshop-app-mern-stack.herokuapp.com/)
 
@@ -6,18 +7,21 @@ A fullstack eCommerce website using MERN stack and Redux (with Redux Toolkit) an
 ![screenshot 2](https://github.com/rimrachai-marma/mern_stack-eshop/blob/main/uploads/image-1655908460139.PNG)
 ![screenshot 3](https://github.com/rimrachai-marma/mern_stack-eshop/blob/main/uploads/image-1655908469615.PNG)
 
-
 ## Technology
 
 > Thechnologies that used in this project
+
 #### Frontend
+
 - React JS
 - React Router v6
 - Redux with Redux toolkit
 - Pure CSS with SASS (Did not any css framework)
 - Axios
 - React PayPal JS
+
 #### Backend
+
 - Node JS with express.js
 - mongoose
 - validator
@@ -31,7 +35,9 @@ A fullstack eCommerce website using MERN stack and Redux (with Redux Toolkit) an
 ## Features
 
 > Full featured with...
-- Protected and nested route 
+
+- Protected and nested route
+- Form validation
 - Shopping cart and that save to the backend database when user login.
 - Product reviews and ratings
 - Product pagination
@@ -46,7 +52,6 @@ A fullstack eCommerce website using MERN stack and Redux (with Redux Toolkit) an
 - Checkout process (shipping, order, payment, etc)
 - Payment integration with Paypal and Stripe
 - Database seeder (products & users)
-
 
 ### Env Variables
 
@@ -112,6 +117,5 @@ john@example.com (User)
 natasha@example.com (User)
 12345678
 ```
-
 
 Copyright (c) 2020 Rimrachai Marma
