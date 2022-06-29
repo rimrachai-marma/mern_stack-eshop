@@ -57,14 +57,15 @@
       font-weight: 500;
       display: inline-block;
       transition: 0.3s;
+      font-family: 'Open Sans', sans-serif;
 
       &:hover {
-        color: #f79240;
+        color: #2d3c50;
       }
     }
 
     &:hover .menu-icons {
-      fill: #555;
+      fill: #2d3c50;
     }
   }
 }

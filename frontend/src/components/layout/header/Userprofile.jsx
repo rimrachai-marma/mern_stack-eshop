@@ -53,7 +53,7 @@ function Userprofile() {
         )}
       </div>
       <div className={menuClasses}>
-        <h3>{user.name}</h3>
+        <h2>{user.name}</h2>
         <ul>
           <li>
             <UserIcon className={styles['menu-icons']} />

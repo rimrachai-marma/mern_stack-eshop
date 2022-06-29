@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
 
 import Rating from '../Rating';
 import ErrorMessage from '../UI/ErrorMessage';
@@ -14,6 +14,8 @@ import { formatRelativeDate } from '../../utilities';
 
 const Review = () => {
   const params = useParams();
+
+  const from = useLocation().pathname;
 
   const token = useSelector((state) => state.auth.token);
   const isLoggedIn = !!token;
@@ -125,7 +127,11 @@ const Review = () => {
         ) : (
           <Message>
             Please,{' '}
-            <Link className={styles['link-btn']} to="/auth">
+            <Link
+              className={styles['link-btn']}
+              to={`/auth?redirect=${from}`}
+              state={{ from }}
+            >
               sign in
             </Link>{' '}
             to write a review

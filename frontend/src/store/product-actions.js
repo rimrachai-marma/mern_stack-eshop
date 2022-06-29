@@ -29,7 +29,6 @@ export const fetchAllProducts = (
 
     try {
       const productsData = await fetchData();
-      console.log(productsData);
 
       dispatch(
         getAllProductSclice.actions.succces({

@@ -38,6 +38,7 @@ router.put('/cart', auth, async (req, res) => {
   }
 });
 
+////
 router.get('/cart', auth, async (req, res) => {
   const user = req.user._id;
   try {

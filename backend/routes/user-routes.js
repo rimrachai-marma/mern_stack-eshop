@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const multer = require('multer');
 const sharp = require('sharp');
 
@@ -174,14 +175,18 @@ router.get('/users', auth, admin, async (req, res) => {
 // @route   GET /api/users/:id
 // @access  Private/Admin
 router.get('/users/:id', auth, admin, async (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(404).send({ message: 'User not found' });
+  }
+
   try {
     const user = await User.findById(req.params.id).select(
       '-password -tokens -avatar'
     );
-    if (user) {
-      res.status(200).send(user);
+    if (!user) {
+      res.status(404).send({ message: 'User not found' });
     }
-    res.status(404).send({ message: 'User not found' });
+    res.status(200).send(user);
   } catch (error) {
     res.status(404).send({ message: error.message });
   }
@@ -191,16 +196,19 @@ router.get('/users/:id', auth, admin, async (req, res) => {
 // @route   DELETE /api/users/:id
 // @access  Private/Admin
 router.delete('/users/:id', auth, admin, async (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(404).send({ message: 'User not found' });
+  }
+
   try {
     const user = await User.findById(req.params.id);
 
-    if (user) {
-      await user.remove();
-
-      res.status(200).send({ message: 'User removed' });
+    if (!user) {
+      res.status(404).send({ message: 'User not found' });
     }
+    await user.remove();
 
-    res.status(404).send({ message: 'User not found' });
+    res.status(200).send({ message: 'User removed' });
   } catch (error) {
     res.status(404).send({ message: error.message });
   }
@@ -210,6 +218,10 @@ router.delete('/users/:id', auth, admin, async (req, res) => {
 // @route   PATCH /api/users/:id
 // @access  Private/Admin
 router.patch('/users/:id', auth, async (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(404).send({ message: 'User not found' });
+  }
+
   const updates = Object.keys(req.body);
 
   const allowedUpdates = ['name', 'email', 'isAdmin', 'gender'];
@@ -224,19 +236,18 @@ router.patch('/users/:id', auth, async (req, res) => {
 
   try {
     const user = await User.findById(req.params.id);
-    if (user) {
-      updates.forEach((update) => (user[update] = req.body[update]));
-      const updatedUser = await user.save();
-      res.send({
-        _id: updatedUser._id,
-        name: updatedUser.name,
-        email: updatedUser.email,
-        isAdmin: updatedUser.isAdmin,
-        gender: updatedUser.gender
-      });
-    } else {
+    if (!user) {
       res.status(404).send({ message: 'User not found' });
     }
+    updates.forEach((update) => (user[update] = req.body[update]));
+    const updatedUser = await user.save();
+    res.send({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+      gender: updatedUser.gender
+    });
   } catch (e) {
     res.status(400).send({ message: e.message });
   }
@@ -290,6 +301,10 @@ router.delete('/users/me/avatar', auth, async (req, res) => {
 // @route   get /users/:id/avatar
 // @access  Private
 router.get('/users/:id/avatar', async (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(404).send({ message: 'User not found' });
+  }
+
   try {
     const user = await User.findById(req.params.id);
 

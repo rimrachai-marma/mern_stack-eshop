@@ -1,6 +1,7 @@
 const express = require('express');
-const { auth, admin } = require('../middleware/auth-middleware');
+const mongoose = require('mongoose');
 
+const { auth, admin } = require('../middleware/auth-middleware');
 const Order = require('../models/order-model');
 
 const router = new express.Router();
@@ -43,6 +44,10 @@ router.post('/orders', auth, async (req, res) => {
 // @route   GET /api/orders/:id
 // @access  Private
 router.get('/orders/:id', auth, async (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(404).send({ message: 'Order not found' });
+  }
+
   try {
     const order = await Order.findById(req.params.id).populate(
       'user',
@@ -62,6 +67,10 @@ router.get('/orders/:id', auth, async (req, res) => {
 // @route   PETCH /api/orders/:id/pay
 // @access  Private
 router.patch('/orders/:id/pay', auth, async (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(404).send({ message: 'Product not found' });
+  }
+
   const updates = Object.keys(req.body);
 
   const allowedUpdates = [
@@ -87,6 +96,7 @@ router.patch('/orders/:id/pay', auth, async (req, res) => {
     if (!order) {
       res.status(404).send({ message: 'Order not found' });
     }
+
     order.isPaid = true;
     order.paidAt = Date.now();
     order.paymentMethod = req.body.paymentMethod;
@@ -135,11 +145,20 @@ router.get('/orders', auth, async (req, res) => {
 // @access  Private/Admin
 router.patch('/orders/:id/deliver', auth, async (req, res) => {
   const id = req.params.id;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    res.status(404).send({ message: 'Order not found' });
+  }
+
   try {
     const order = await Order.findByIdAndUpdate(id, {
       isDelivered: true,
       deliveredAt: Date.now()
     });
+
+    if (!order) {
+      res.status(404).send({ message: 'Order not found' });
+    }
 
     res.status(200).send(order);
   } catch (error) {

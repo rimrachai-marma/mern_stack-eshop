@@ -1,6 +1,7 @@
 const express = require('express');
-const { auth, admin } = require('../middleware/auth-middleware');
+const mongoose = require('mongoose');
 
+const { auth, admin } = require('../middleware/auth-middleware');
 const Product = require('../models/product-model');
 
 const router = new express.Router();
@@ -113,13 +114,18 @@ router.get('/products', async (req, res) => {
 // @route   GET /api/products/:id
 // @access  Public
 router.get('/products/:id', async (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(404).send({ message: 'Product not found' });
+  }
+
   try {
     const product = await Product.findById(req.params.id);
-    if (product) {
-      res.status(200).send(product);
-    } else {
+
+    if (!product) {
       res.status(404).send({ message: 'Product not found' });
     }
+
+    res.status(200).send(product);
   } catch (error) {
     res.status(404).send({ message: error.message });
   }
@@ -140,39 +146,43 @@ router.get('/top/products', async (req, res) => {
 // @route   POST /api/products/:id/reviews
 // @access  Private
 router.post('/products/:id/reviews', auth, async (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(404).send({ message: 'Product not found' });
+  }
+
   const { rating, comment } = req.body;
 
   try {
     const product = await Product.findById(req.params.id);
 
-    if (product) {
-      const alreadyReviewed = product.reviews.find(
-        (review) => review.user.toString() === req.user._id.toString()
-      );
-
-      if (alreadyReviewed) {
-        res.status(409).send({ message: 'Product already reviewed' });
-      } else {
-        const review = {
-          name: req.user.name,
-          rating: Number(rating),
-          comment,
-          user: req.user._id
-        };
-
-        product.reviews.push(review);
-
-        product.numReviews = product.reviews.length;
-
-        product.rating =
-          product.reviews.reduce((acc, item) => item.rating + acc, 0) /
-          product.reviews.length;
-
-        await product.save();
-        res.status(201).send({ message: 'Review added' });
-      }
-    } else {
+    if (!product) {
       res.status(404).send({ message: 'Product not found' });
+    }
+
+    const alreadyReviewed = product.reviews.find(
+      (review) => review.user.toString() === req.user._id.toString()
+    );
+
+    if (alreadyReviewed) {
+      res.status(409).send({ message: 'Product already reviewed' });
+    } else {
+      const review = {
+        name: req.user.name,
+        rating: Number(rating),
+        comment,
+        user: req.user._id
+      };
+
+      product.reviews.push(review);
+
+      product.numReviews = product.reviews.length;
+
+      product.rating =
+        product.reviews.reduce((acc, item) => item.rating + acc, 0) /
+        product.reviews.length;
+
+      await product.save();
+      res.status(201).send({ message: 'Review added' });
     }
   } catch (error) {
     res.status(404).send({ message: error.message });
@@ -235,15 +245,19 @@ router.post('/products', auth, admin, async (req, res) => {
 // @access  Private/Admin
 
 router.delete('/products/:id', auth, admin, async (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(404).send({ message: 'Product not found' });
+  }
+
   try {
     const product = await Product.findById(req.params.id);
 
-    if (product) {
-      await product.remove();
-      res.status(200).send({ message: 'Product removed' });
-    } else {
+    if (!product) {
       res.status(404).send({ message: 'Product not found' });
     }
+
+    await product.remove();
+    res.status(200).send({ message: 'Product removed' });
   } catch (error) {
     res.status(404).send({ message: error.message });
   }
@@ -253,6 +267,10 @@ router.delete('/products/:id', auth, admin, async (req, res) => {
 // @route   PATCH /api/products/:id
 // @access  Private/Admin
 router.patch('/products/:id', auth, admin, async (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(404).send({ message: 'Product not found' });
+  }
+
   const updates = Object.keys(req.body);
 
   const allowedUpdates = [
@@ -276,14 +294,13 @@ router.patch('/products/:id', auth, admin, async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
 
-    if (product) {
-      updates.forEach((update) => (product[update] = req.body[update]));
-      const updatedProduct = await product.save();
-
-      res.status(200).send(updatedProduct);
-    } else {
+    if (!product) {
       res.status(404).send({ message: 'Product not found' });
     }
+    updates.forEach((update) => (product[update] = req.body[update]));
+    const updatedProduct = await product.save();
+
+    res.status(200).send(updatedProduct);
   } catch (error) {
     res.status(404).send({ message: error.message });
   }

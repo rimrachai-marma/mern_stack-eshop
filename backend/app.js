@@ -30,13 +30,15 @@ app.use('/api', orderRouter);
 app.use('/api', paymentRouter);
 app.use('/api', uploadRouter);
 
-app.use('/uploads', express.static(path.join(path.resolve(), '/uploads')));
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(path.resolve(), '/frontend/build')));
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
 
   app.get('*', (req, res) =>
-    res.sendFile(path.resolve(path.resolve() + '/frontend/build/index.html'))
+    res.sendFile(
+      path.resolve(__dirname, '../', 'frontend', 'build', 'index.html')
+    )
   );
 } else {
   app.get('/', (req, res) => {
