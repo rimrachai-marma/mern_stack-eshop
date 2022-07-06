@@ -43,14 +43,14 @@ A fullstack eCommerce website using MERN stack and Redux (with Redux Toolkit) an
 - Product pagination
 - Product search, filter, and sorting
 - User profile with orders and user profile edit
-- User profile picture with buffer image
+- User profile picture (buffer image) upload with multer
 - User Order details page
-- Admin product management and image upload
+- Checkout process (shipping, order, payment, etc)
+- Payment integration with Paypal and Stripe (secure backend logic)
+- Admin product management and image upload with multer
 - Admin user management
 - Admin Order details page
 - Mark orders as delivered option
-- Checkout process (shipping, order, payment, etc)
-- Payment integration with Paypal and Stripe
 - Database seeder (products & users)
 
 ### Env Variables
