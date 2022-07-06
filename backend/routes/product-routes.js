@@ -115,14 +115,14 @@ router.get('/products', async (req, res) => {
 // @access  Public
 router.get('/products/:id', async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    res.status(404).send({ message: 'Product not found' });
+    return res.status(404).send({ message: 'Product not found' });
   }
 
   try {
     const product = await Product.findById(req.params.id);
 
     if (!product) {
-      res.status(404).send({ message: 'Product not found' });
+      return res.status(404).send({ message: 'Product not found' });
     }
 
     res.status(200).send(product);
@@ -147,7 +147,7 @@ router.get('/top/products', async (req, res) => {
 // @access  Private
 router.post('/products/:id/reviews', auth, async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    res.status(404).send({ message: 'Product not found' });
+    return res.status(404).send({ message: 'Product not found' });
   }
 
   const { rating, comment } = req.body;
@@ -156,7 +156,7 @@ router.post('/products/:id/reviews', auth, async (req, res) => {
     const product = await Product.findById(req.params.id);
 
     if (!product) {
-      res.status(404).send({ message: 'Product not found' });
+      return res.status(404).send({ message: 'Product not found' });
     }
 
     const alreadyReviewed = product.reviews.find(
@@ -246,14 +246,14 @@ router.post('/products', auth, admin, async (req, res) => {
 
 router.delete('/products/:id', auth, admin, async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    res.status(404).send({ message: 'Product not found' });
+    return res.status(404).send({ message: 'Product not found' });
   }
 
   try {
     const product = await Product.findById(req.params.id);
 
     if (!product) {
-      res.status(404).send({ message: 'Product not found' });
+      return res.status(404).send({ message: 'Product not found' });
     }
 
     await product.remove();
@@ -268,7 +268,7 @@ router.delete('/products/:id', auth, admin, async (req, res) => {
 // @access  Private/Admin
 router.patch('/products/:id', auth, admin, async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    res.status(404).send({ message: 'Product not found' });
+    return res.status(404).send({ message: 'Product not found' });
   }
 
   const updates = Object.keys(req.body);
@@ -295,7 +295,7 @@ router.patch('/products/:id', auth, admin, async (req, res) => {
     const product = await Product.findById(req.params.id);
 
     if (!product) {
-      res.status(404).send({ message: 'Product not found' });
+      return res.status(404).send({ message: 'Product not found' });
     }
     updates.forEach((update) => (product[update] = req.body[update]));
     const updatedProduct = await product.save();

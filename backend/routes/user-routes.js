@@ -54,7 +54,7 @@ router.post('/users/login', async (req, res) => {
       token
     });
   } catch (error) {
-    res.status(401).send({ message: 'Invalid email or password' });
+    res.status(401).send({ message: error.message });
   }
 });
 
@@ -176,7 +176,7 @@ router.get('/users', auth, admin, async (req, res) => {
 // @access  Private/Admin
 router.get('/users/:id', auth, admin, async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    res.status(404).send({ message: 'User not found' });
+    return res.status(404).send({ message: 'User not found' });
   }
 
   try {
@@ -184,7 +184,7 @@ router.get('/users/:id', auth, admin, async (req, res) => {
       '-password -tokens -avatar'
     );
     if (!user) {
-      res.status(404).send({ message: 'User not found' });
+      return res.status(404).send({ message: 'User not found' });
     }
     res.status(200).send(user);
   } catch (error) {
@@ -197,14 +197,14 @@ router.get('/users/:id', auth, admin, async (req, res) => {
 // @access  Private/Admin
 router.delete('/users/:id', auth, admin, async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    res.status(404).send({ message: 'User not found' });
+    return res.status(404).send({ message: 'User not found' });
   }
 
   try {
     const user = await User.findById(req.params.id);
 
     if (!user) {
-      res.status(404).send({ message: 'User not found' });
+      return res.status(404).send({ message: 'User not found' });
     }
     await user.remove();
 
@@ -219,7 +219,7 @@ router.delete('/users/:id', auth, admin, async (req, res) => {
 // @access  Private/Admin
 router.patch('/users/:id', auth, async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    res.status(404).send({ message: 'User not found' });
+    return res.status(404).send({ message: 'User not found' });
   }
 
   const updates = Object.keys(req.body);
@@ -237,7 +237,7 @@ router.patch('/users/:id', auth, async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     if (!user) {
-      res.status(404).send({ message: 'User not found' });
+      return res.status(404).send({ message: 'User not found' });
     }
     updates.forEach((update) => (user[update] = req.body[update]));
     const updatedUser = await user.save();
@@ -302,18 +302,18 @@ router.delete('/users/me/avatar', auth, async (req, res) => {
 // @access  Private
 router.get('/users/:id/avatar', async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    res.status(404).send({ message: 'User not found' });
+    return res.status(404).send({ message: 'User not found' });
   }
 
   try {
     const user = await User.findById(req.params.id);
 
     if (!user) {
-      throw new Error('User not found!');
+      return res.status(404).send({ message: 'User not found' });
     }
 
     if (user && !user.avatar) {
-      throw new Error('No profile image found!');
+      return res.status(404).send({ message: 'No profile image found!' });
     }
 
     res.set('Content-Type', 'image/png');

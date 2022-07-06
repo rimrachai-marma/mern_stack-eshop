@@ -43,6 +43,7 @@ router.get('/cart', auth, async (req, res) => {
   const user = req.user._id;
   try {
     const cart = await Cart.findOne({ user });
+
     res.send(cart);
   } catch (error) {
     res.status(400).send({ message: error.message });

@@ -45,7 +45,7 @@ router.post('/orders', auth, async (req, res) => {
 // @access  Private
 router.get('/orders/:id', auth, async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    res.status(404).send({ message: 'Order not found' });
+    return res.status(404).send({ message: 'Order not found' });
   }
 
   try {
@@ -55,7 +55,7 @@ router.get('/orders/:id', auth, async (req, res) => {
     );
 
     if (!order) {
-      res.status(404).send({ message: 'Order not found' });
+      return res.status(404).send({ message: 'Order not found' });
     }
     res.status(200).send(order);
   } catch (error) {
@@ -68,7 +68,7 @@ router.get('/orders/:id', auth, async (req, res) => {
 // @access  Private
 router.patch('/orders/:id/pay', auth, async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    res.status(404).send({ message: 'Product not found' });
+    return res.status(404).send({ message: 'Product not found' });
   }
 
   const updates = Object.keys(req.body);
@@ -94,7 +94,7 @@ router.patch('/orders/:id/pay', auth, async (req, res) => {
     const order = await Order.findById(req.params.id);
 
     if (!order) {
-      res.status(404).send({ message: 'Order not found' });
+      return res.status(404).send({ message: 'Order not found' });
     }
 
     order.isPaid = true;
@@ -147,7 +147,7 @@ router.patch('/orders/:id/deliver', auth, async (req, res) => {
   const id = req.params.id;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    res.status(404).send({ message: 'Order not found' });
+    return res.status(404).send({ message: 'Order not found' });
   }
 
   try {
@@ -157,7 +157,7 @@ router.patch('/orders/:id/deliver', auth, async (req, res) => {
     });
 
     if (!order) {
-      res.status(404).send({ message: 'Order not found' });
+      return res.status(404).send({ message: 'Order not found' });
     }
 
     res.status(200).send(order);
