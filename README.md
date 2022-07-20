@@ -40,8 +40,7 @@ A fullstack eCommerce website using MERN stack and Redux (with Redux Toolkit) an
 - Form validation
 - Shopping cart and that save to the backend database when user login.
 - Product reviews and ratings
-- Product pagination
-- Product search, filter, and sorting
+- Product pagination, search, filter, and sorting (in same route)
 - User profile with orders and user profile edit
 - User profile picture (buffer image) upload with multer
 - User Order details page
