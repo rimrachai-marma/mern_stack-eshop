@@ -16,7 +16,7 @@ A fullstack eCommerce website using MERN stack and Redux (with Redux Toolkit) an
 - React JS
 - React Router v6
 - Redux with Redux toolkit
-- Pure CSS with SASS (Did not any css framework)
+- Pure CSS with SASS (no any css framework)
 - Axios
 - React PayPal JS
 
